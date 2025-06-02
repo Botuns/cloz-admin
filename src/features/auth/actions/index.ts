@@ -1,6 +1,6 @@
-import { CreateAdminUserRequest } from "@/features/types";
+import { CreateAdminUserRequest } from "@/features/auth/types";
 import { ServerFunctionBaseResponse } from "@/server-functions-base-response";
-import prisma from "../../../../lib/prisma";
+import prisma from "../../../lib/prisma";
 import bcrypt from "bcryptjs";
 
 // using prisma, i want to create server actions for creating user
@@ -8,7 +8,7 @@ export async function createAdminUserAction(
   payload: CreateAdminUserRequest
 ): Promise<ServerFunctionBaseResponse> {
   // destructure payload
-  const { email, password, name, role } = payload;
+  const { email, password, name, role, phone } = payload;
   // check existence
   try {
     const existingAdmin = await prisma.user.findUnique({
@@ -31,6 +31,8 @@ export async function createAdminUserAction(
         email,
         password: hashedPassword,
         role: role || "ADMIN",
+        phone: phone || null,
+        isActive: true,
       },
     });
     if (!admin) {

@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
-import { createAdminUserSchema } from "@/features/types";
+import { createAdminUserSchema } from "@/features/auth/types";
 import { createAdminUserAction } from "../actions";
 
 const authRoutes = new Hono().post(
@@ -13,7 +13,7 @@ const authRoutes = new Hono().post(
     if (response.error) {
       return c.json(
         { error: response.error, message: response.message },
-       response.status || 500 
+        response.status || 500
       );
     }
 
