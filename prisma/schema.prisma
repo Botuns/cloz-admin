@@ -48,6 +48,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   emailVerified DateTime?
+  isVerified Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
