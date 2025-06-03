@@ -6,6 +6,7 @@ import { QueryProvider } from "./query-provider";
 import Providers from "./session-provider";
 import { getServerSession } from "next-auth";
 import authOptions from "@/lib/auth";
+import { Toaster } from "sonner";
 
 const inter = Inter_Tight({
   variable: "--font-inter",
@@ -27,6 +28,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.variable}  antialiased`}>
         <QueryProvider>
+          <Toaster richColors={true} />
           <Providers session={session}>{children}</Providers>
         </QueryProvider>
       </body>

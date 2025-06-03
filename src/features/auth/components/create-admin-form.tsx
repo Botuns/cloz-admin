@@ -4,14 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -30,6 +23,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useCreateAdmin } from "../api/use-create-admin";
+import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 type FormValues = z.infer<typeof createAdminUserSchema>;
 
@@ -52,14 +47,19 @@ export const CreateAdminForm = () => {
     });
   };
 
+  const availableRoles = Object.values(UserRole).map((role) => ({
+    value: role,
+    label: role.charAt(0).toUpperCase() + role.slice(1).toLowerCase(),
+  }));
+
   return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardHeader>
+    <Card className="w-full max-w-md mx-auto p-4 py-8">
+      {/* <CardHeader>
         <CardTitle className="text-center">Create Admin Account</CardTitle>
         <CardDescription className="text-center">
           Add a new administrator to cloz
         </CardDescription>
-      </CardHeader>
+      </CardHeader> */}
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -125,36 +125,55 @@ export const CreateAdminForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Role</FormLabel>
-                  {/* <Select
+                  <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value || UserRole.ADMIN}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select a role" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {Object.values(UserRole).map((role) => (
-                        <SelectItem key={role} value={role}>
-                          {role}
+                      {availableRoles.map((role) => (
+                        <SelectItem key={role.value} value={role.value}>
+                          {role.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
-                  </Select> */}
+                  </Select>
                   <FormDescription>Default is Admin role</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full" disabled={isPending}>
-              {isPending ? "Creating..." : "Create Admin"}
+            <Button
+              type="submit"
+              className="w-full bg-gradient-to-b from-stone-700 to-stone-900 shadow-lg hover:from-stone-800 hover:to-stone-950 text-white"
+              disabled={isPending}
+            >
+              {isPending ? (
+                <>
+                  <div className="flex items-center justify-center">
+                    <Loader2 className="animate-spin" />
+                    <span className="ml-2">Creating Admin...</span>
+                  </div>
+                </>
+              ) : (
+                "Create Admin"
+              )}
             </Button>
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex justify-center text-sm text-muted-foreground">
+      <CardFooter className="flex flex-col justify-center text-sm text-muted-foreground">
         Admin accounts have full system access
+        <p className="text-xs">
+          Have an existing account?{" "}
+          <Link href="/auth/login" className="text-blue-500 hover:underline">
+            Sign in here
+          </Link>
+        </p>
       </CardFooter>
     </Card>
   );
