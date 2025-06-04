@@ -1,3 +1,4 @@
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -8,6 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useGetRecentOrders } from "../api/use-get-recent-orders";
+import { DataTable } from "@/components/data-table";
+import { RecentOrder, recentOrdersColumns } from "./columns";
 
 const activities = [
   {
@@ -74,6 +78,8 @@ function getStatusColor(status: string) {
 }
 
 export function RecentActivities() {
+  const limit = 5;
+  const { data, isLoading } = useGetRecentOrders({ limit });
   return (
     <Card>
       <CardHeader>
@@ -81,52 +87,14 @@ export function RecentActivities() {
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="font-medium text-muted-foreground">
-                  ORDER ID
-                </TableHead>
-                <TableHead className="font-medium text-muted-foreground">
-                  CUSTOMER
-                </TableHead>
-                <TableHead className="font-medium text-muted-foreground">
-                  DATE
-                </TableHead>
-                <TableHead className="font-medium text-muted-foreground">
-                  STATUS
-                </TableHead>
-                <TableHead className="font-medium text-muted-foreground text-right">
-                  AMOUNT
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {activities.map((activity) => (
-                <TableRow key={activity.orderId}>
-                  <TableCell className="font-medium">
-                    {activity.orderId}
-                  </TableCell>
-                  <TableCell>{activity.customer}</TableCell>
-                  <TableCell className="text-muted-foreground">
-                    {activity.date}
-                  </TableCell>
-                  <TableCell>
-                    <Badge
-                      variant={getStatusVariant(activity.status)}
-                      className={getStatusColor(activity.status)}
-                    >
-                      {activity.status.charAt(0).toUpperCase() +
-                        activity.status.slice(1)}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right font-medium">
-                    {activity.amount}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <DataTable
+            data={(data as unknown as RecentOrder[]) ?? []}
+            columns={recentOrdersColumns}
+            filters={{
+              placeholder: "Search by customer name, order ID, or product name",
+              value: "customer",
+            }}
+          />
         </div>
       </CardContent>
     </Card>
