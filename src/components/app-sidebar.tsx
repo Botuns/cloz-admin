@@ -121,6 +121,7 @@ export function Sidebar() {
               );
             })}
           </nav>
+          <Button>Add New Product</Button>
 
           {/* Help Section */}
           <div className="p-4 border-t border-border">

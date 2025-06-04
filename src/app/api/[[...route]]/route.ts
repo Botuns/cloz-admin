@@ -2,7 +2,7 @@ import authRoutes from "@/features/auth/server/route";
 import dashboardRoutes from "@/features/dashboard-home/server/route";
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
-const app = new Hono().basePath("/api");
+const app = new Hono().basePath("/api/v1");
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const routes = app

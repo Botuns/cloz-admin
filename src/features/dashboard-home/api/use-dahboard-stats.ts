@@ -5,7 +5,7 @@ export function useDashboardStats() {
   return useQuery({
     queryKey: ["dashboard-stats"],
     queryFn: async () => {
-      const res = await client.api.dashboard.stats["$get"]();
+      const res = await client.api.v1.dashboard.stats["$get"]();
       if (!res.ok) throw new Error("Failed to fetch dashboard stats");
       return res.json();
     },

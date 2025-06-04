@@ -5,9 +5,8 @@ import {
   getTotalOrdersCount,
 } from "@/server/queries";
 
-const dashboardRoutes = new Hono();
-
-dashboardRoutes.get("/stats", async (c) => {
+const dashboardRoutes = new Hono()
+  .get("/stats", async (c) => {
   const [totalOrders, topSellingProducts, dashboardStats] = await Promise.all([
     getTotalOrdersCount(),
     getTopSellingProducts(),

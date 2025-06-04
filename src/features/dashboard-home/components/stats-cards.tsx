@@ -13,27 +13,28 @@ export function StatsCards() {
   const statsConfig = [
     {
       title: "Total Orders",
-      value: data?.totalOrders ?? 0,
+      value: data?.totalOrders ?? (0 as string | number | Decimal),
       icon: ShoppingCart,
       iconColor: "text-blue-600",
       iconBg: "bg-blue-100",
-      formatter: (value: number | Decimal) => value.toLocaleString(),
+      formatter: (value: string | number | Decimal) => value.toLocaleString(),
     },
     {
       title: "Top Selling Products",
-      value: data?.topSellingProductsCount ?? 0,
+      value: data?.topSellingProductsCount ?? (0 as string | number | Decimal),
       icon: Star,
       iconColor: "text-green-600",
       iconBg: "bg-green-100",
-      formatter: (value: number | Decimal) => value.toString(),
+      formatter: (value: string | number | Decimal) => value.toString(),
     },
     {
       title: "Total Revenue",
-      value: data?.totalRevenue ?? 0,
+      value: data?.totalRevenue ?? (0 as string | number | Decimal),
       icon: DollarSign,
       iconColor: "text-purple-600",
       iconBg: "bg-purple-100",
-      formatter: (value: number | Decimal) => `₦${value.toLocaleString()}`,
+      formatter: (value: string | number | Decimal) =>
+        `₦${value.toLocaleString()}`,
     },
   ];
 
