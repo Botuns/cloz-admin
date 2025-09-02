@@ -81,7 +81,7 @@ export function RecentActivities() {
   const limit = 5;
   const { data, isLoading } = useGetRecentOrders({ limit });
   return (
-    <Card>
+    <Card className="shadow-none">
       <CardHeader>
         <CardTitle>Recent Activities</CardTitle>
       </CardHeader>

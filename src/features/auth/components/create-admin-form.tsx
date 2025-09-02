@@ -53,7 +53,7 @@ export const CreateAdminForm = () => {
   }));
 
   return (
-    <Card className="w-full max-w-md mx-auto p-4 py-8">
+    <Card className="w-full max-w-md mx-auto p-4 py-8 shadow-none rounded-md">
       {/* <CardHeader>
         <CardTitle className="text-center">Create Admin Account</CardTitle>
         <CardDescription className="text-center">
@@ -70,7 +70,11 @@ export const CreateAdminForm = () => {
                 <FormItem>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" {...field} />
+                    <Input
+                      placeholder="John Doe"
+                      {...field}
+                      className="shadow-none"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -87,6 +91,7 @@ export const CreateAdminForm = () => {
                       type="email"
                       placeholder="admin@example.com"
                       {...field}
+                      className="shadow-none"
                     />
                   </FormControl>
                   <FormMessage />
@@ -100,7 +105,12 @@ export const CreateAdminForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="••••••••"
+                      {...field}
+                      className="shadow-none"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -113,7 +123,11 @@ export const CreateAdminForm = () => {
                 <FormItem>
                   <FormLabel>Phone (Optional)</FormLabel>
                   <FormControl>
-                    <Input placeholder="+1 (555) 123-4567" {...field} />
+                    <Input
+                      placeholder="+1 (555) 123-4567"
+                      {...field}
+                      className="shadow-none"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -130,7 +144,7 @@ export const CreateAdminForm = () => {
                     defaultValue={field.value || UserRole.ADMIN}
                   >
                     <FormControl>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full shadow-none">
                         <SelectValue placeholder="Select a role" />
                       </SelectTrigger>
                     </FormControl>
@@ -149,7 +163,7 @@ export const CreateAdminForm = () => {
             />
             <Button
               type="submit"
-              className="w-full bg-gradient-to-b from-stone-700 to-stone-900 shadow-lg hover:from-stone-800 hover:to-stone-950 text-white"
+              className="w-full bg-gradient-to-b from-stone-700 to-stone-900 shawdow-none hover:from-stone-800 hover:to-stone-950 text-white"
               disabled={isPending}
             >
               {isPending ? (

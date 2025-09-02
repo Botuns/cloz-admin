@@ -109,7 +109,12 @@ export function Sidebar() {
           {/* Navigation */}
           <nav className="flex-1 p-4 space-y-2">
             {navigation.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/dashboard" &&
+                  (pathname.startsWith(item.href + "/") ||
+                    pathname.startsWith(item.href + "?") ||
+                    pathname === item.href));
               return (
                 <Link
                   key={item.name}
@@ -121,6 +126,7 @@ export function Sidebar() {
                       ? "bg-secondary text-primary"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   <item.icon className="h-5 w-5" />
                   <span>{item.name}</span>

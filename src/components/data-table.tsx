@@ -76,7 +76,7 @@ export function DataTable<TData, TValue>({
               .getColumn(filters.value ?? "")
               ?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm shadow-none"
         />
       </div>
       <div className="rounded-md border">

@@ -100,7 +100,7 @@ export function StatsCards() {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {statsConfig.map((stat) => (
-          <Card key={stat.title} className="p-6">
+          <Card key={stat.title} className="p-6 shadow-none">
             <CardContent className="p-0">
               <div className="flex items-center space-x-4">
                 <div className={`p-3 rounded-full ${stat.iconBg}`}>

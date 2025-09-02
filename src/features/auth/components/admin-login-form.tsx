@@ -71,7 +71,7 @@ export default function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto mt-10 shadow-md">
+    <Card className="w-full max-w-md mx-auto mt-10 shadow-none">
       <CardHeader>
         <CardTitle className="text-center text-2xl">Sign In</CardTitle>
       </CardHeader>
@@ -89,6 +89,7 @@ export default function LoginForm() {
                   <FormControl>
                     <Input
                       type="email"
+                      className="shadow-none"
                       placeholder="your@email.com"
                       autoComplete="email"
                       disabled={isLoading}
@@ -113,6 +114,7 @@ export default function LoginForm() {
                       placeholder="••••••••"
                       autoComplete="current-password"
                       disabled={isLoading}
+                      className="shadow-none"
                       {...field}
                     />
                   </FormControl>
@@ -123,7 +125,7 @@ export default function LoginForm() {
 
             <Button
               type="submit"
-              className="w-full bg-gradient-to-b from-stone-700 to-stone-900 shadow-lg hover:from-stone-800 hover:to-stone-950 text-white"
+              className="w-full bg-gradient-to-b from-stone-700 to-stone-900 shadow-lg hover:from-stone-800 hover:to-stone-950 text-white shadow-none"
               disabled={isLoading}
             >
               {isLoading ? (

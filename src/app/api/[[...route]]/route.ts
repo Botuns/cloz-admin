@@ -2,12 +2,14 @@ import authRoutes from "@/features/auth/server/route";
 import dashboardRoutes from "@/features/dashboard-home/server/route";
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
+import brandRoutes from "@/features/brands/server/route";
 const app = new Hono().basePath("/api/v1");
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const routes = app
   .route("/auth", authRoutes)
-  .route("/dashboard", dashboardRoutes);
+  .route("/dashboard", dashboardRoutes)
+  .route("/brands", brandRoutes);
 
 export const OPTIONS = handle(app);
 export const GET = handle(app);
